@@ -29,6 +29,14 @@ export default function Location() {
     }
   };
 
+  // Opens Google Maps with the specified latitude and longitude
+  const navigateToLocation = () => {
+    if (position) {
+      const url = `https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}`;
+      window.open(url, "_blank");
+    }
+  };
+
   return (
     <div>
       <button onClick={getLocation}>
@@ -37,7 +45,8 @@ export default function Location() {
       {position && (
         <div>
           Latitude: {position.latitude}<br />
-          Longitude: {position.longitude}
+          Longitude: {position.longitude}<br />
+          <button onClick={navigateToLocation}>Navigate To The Location</button>
         </div>
       )}
     </div>
