@@ -1,14 +1,14 @@
 import Camera from "./components/Camera";
 import Location from "./components/Location";
+import BottomNavBar from "./components/BottomNavBar";
 
 function App() {
   return (
-    <div>
-      <h1>Camera Demo</h1>
+    <div className="flex flex-col min-h-screen">
       <Camera />
-      <h1>Location Demo</h1>
       <Location />
-      <br />
+
+      <BottomNavBar />
     </div>
   );
 }

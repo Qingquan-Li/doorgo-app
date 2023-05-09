@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 export default function Camera() {
   const [stream, setStream] = useState(null);
@@ -37,7 +37,7 @@ export default function Camera() {
       canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
       const photo = canvas.toDataURL("image/png");
       console.log(photo);
-      // do something with the picture (e.g. upload it to a server)
+      // Do something with the photo, e.g. upload it to a server
     }
   };
 
@@ -50,17 +50,34 @@ export default function Camera() {
   };
 
   return (
-    <div>
-      {/* <video ref={videoRef} width="640" height="480" autoPlay playsInline /> */}
-      {/* Center the video component */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <video ref={videoRef} width="640" height="480" autoPlay playsInline />
+    <div className="flex flex-col items-center space-y-4 pb-10 shadow">
+      <div className="relative w-full h-96">
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay playsInline
+        />
       </div>
-      <canvas ref={canvasRef} style={{ display: "none" }} />
-      <div>
-        <button onClick={startCamera}>Start Camera</button>
-        <button onClick={takePhoto}>Take Photo</button>
-        <button onClick={stopCamera}>Stop Camera</button>
+      <canvas ref={canvasRef} className="hidden" />
+      <div className="flex space-x-4">
+        <button
+          className="px-4 py-2 text-white bg-green-500 rounded"
+          onClick={startCamera}
+        >
+          Start Camera
+        </button>
+        <button
+          className="px-4 py-2 text-white bg-blue-500 rounded"
+          onClick={takePhoto}
+        >
+          Take Photo
+        </button>
+        <button
+          className="px-4 py-2 text-white bg-red-500 rounded"
+          onClick={stopCamera}
+        >
+          Stop Camera
+        </button>
       </div>
     </div>
   );

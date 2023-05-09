@@ -38,15 +38,23 @@ export default function Location() {
   };
 
   return (
-    <div>
-      <button onClick={getLocation}>
+    <div className="flex flex-col items-center space-y-4 pt-10">
+      <button
+        className="px-4 py-2 text-white bg-indigo-400 rounded"
+        onClick={getLocation}
+      >
         Get Location (Latitude & Longitude)
       </button>
       {position && (
-        <div>
+        <div className="space-y-4">
           Latitude: {position.latitude}<br />
           Longitude: {position.longitude}<br />
-          <button onClick={navigateToLocation}>Navigate To The Location</button>
+          <button
+            className="px-4 py-2 text-white bg-indigo-400 rounded"
+            onClick={navigateToLocation}
+          >
+            Navigate To The Location
+          </button>
         </div>
       )}
     </div>
