@@ -50,8 +50,8 @@ export default function Camera() {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4 pb-10 shadow">
-      <div className="relative w-full h-96">
+    <div className="flex flex-col items-center space-y-4 pb-6 shadow">
+      <div className="relative w-full h-64">
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
