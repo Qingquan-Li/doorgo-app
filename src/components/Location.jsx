@@ -38,7 +38,7 @@ export default function Location() {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-4 pt-10">
       <button
         className="px-4 py-2 text-white bg-indigo-400 rounded"
         onClick={getLocation}
