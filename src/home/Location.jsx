@@ -30,17 +30,17 @@ export default function Location() {
   };
 
   // Opens Google Maps with the specified latitude and longitude
-  const navigateToLocation = () => {
-    if (position) {
-      const url = `https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}`;
-      window.open(url, "_blank");
-    }
-  };
+  // const navigateToLocation = () => {
+  //   if (position) {
+  //     const url = `https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}`;
+  //     window.open(url, "_blank");
+  //   }
+  // };
 
   return (
-    <div className="flex flex-col items-center space-y-4 pt-10">
+    <div className="space-y-4">
       <button
-        className="px-4 py-2 text-white bg-indigo-400 rounded"
+        className="px-2 py-1 rounded border-gray-300 border hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={getLocation}
       >
         Get Location (Latitude & Longitude)
@@ -49,12 +49,12 @@ export default function Location() {
         <div className="space-y-4">
           Latitude: {position.latitude}<br />
           Longitude: {position.longitude}<br />
-          <button
+          {/* <button
             className="px-4 py-2 text-white bg-indigo-400 rounded"
             onClick={navigateToLocation}
           >
             Navigate To The Location
-          </button>
+          </button> */}
         </div>
       )}
     </div>
