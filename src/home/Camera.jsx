@@ -27,17 +27,29 @@ export default function Camera() {
   };
 
   // Takes a photo from the video stream and saves it to a canvas element
-  const takePhoto = () => {
-    const canvas = canvasRef.current;
-    const video = videoRef.current;
+  // const takePhoto = () => {
+  //   const canvas = canvasRef.current;
+  //   const video = videoRef.current;
 
-    if (canvas && video) {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-      const photo = canvas.toDataURL("image/png");
-      console.log(photo);
-      // Do something with the photo, e.g. upload it to a server
+  //   if (canvas && video) {
+  //     canvas.width = video.videoWidth;
+  //     canvas.height = video.videoHeight;
+  //     canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+  //     const photo = canvas.toDataURL("image/png");
+  //     console.log(photo);
+  //     // Do something with the photo, e.g. upload it to a server
+  //   }
+  // };
+  // Simply pause the video to freeze the screen.
+  const takePhoto = () => {
+    const video = videoRef.current;
+  
+    if (video) {
+      // Pause the video to freeze the screen
+      video.pause();
+  
+      // If you want to resume the video, you can use the following line:
+      // video.play();
     }
   };
 
