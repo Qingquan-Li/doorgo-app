@@ -12,13 +12,23 @@ export default function Account() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <button
-        onClick={handleLoginClick}
-        className="bg-blue-500 text-white py-2 px-4 rounded"
-      >
-        Login
-      </button>
+    <div className="min-h-scree mx-4 mt-48 items-center justify-center">
+      <div className="text-4xl font-bold mb-4">
+        <button
+          onClick={handleLoginClick}
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
+        >
+          Sign Up
+        </button>
+      </div>
+      <div className="text-4xl font-bold mb-4">
+        <button
+          onClick={handleLoginClick}
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
+        >
+          Log In
+        </button>
+      </div>
 
       {showPopup && (
         <div
