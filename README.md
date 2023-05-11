@@ -1,4 +1,10 @@
-# Run the app
+# Door Go App
+Door Go — A Crowdsourced App to Enhance Storefront Accessibility for Visually Impaired Individuals.
+
+Through Door Go, volunteers can capture photos of storefronts, identify and label their accessibility features such as door types, doorknobs, ramps and stairs, as well as record the precise location of the entrances.
+Our ultimate goal is to utilize this crowdsourced data (we also obtain data from Google Street View via https://doorfront.org) to build an open-source map of accessible storefronts, enabling people who are blind or have low vision to navigate the city with greater independence and confidence.
+
+## Run the App
 
 1. Config HTTPS for the local development environment:
 
@@ -9,10 +15,27 @@
 2. Run the code
 
      ```bash
+     $ npm install
      $ npm start
      ```
 
-# Making a Progressive Web App
+## Tech Stack
+
+- Frontend:
+  - TypeScript/JavaScript
+  - React.js
+  - Tailwind CSS
+- Backend:
+  - TypeScript/JavaScript
+  - Node.js (Express.js)
+- Database:
+  - MongoDB (Atlas)
+  - Firebase (for image storage and authentication)
+- Deployment:
+  - Google Cloud Platform
+  - Cloudflare Pages (for frontend preview and test)
+
+## Making a Progressive Web App
 
 - https://create-react-app.dev/docs/making-a-progressive-web-app/
 - https://web.dev/progressive-web-apps/
