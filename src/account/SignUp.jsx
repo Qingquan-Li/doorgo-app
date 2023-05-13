@@ -3,7 +3,8 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const auth = getAuth();
 
-export default function SignUpScreen() {
+// Export component with signUp functions and rendering.
+export default function SignUp() {
   // state to hold user email and password for signing up. Initally empty strings
   const [value, setValue] = React.useState({
     email: '',
@@ -11,36 +12,33 @@ export default function SignUpScreen() {
     error: '',
   })
 
-  async function signUp() {
-    // If we have any empty values
+  // Function to handle sign up button. 
+  async function handleSignUp() {
+    
     if (value.email === '' || value.password === '' ) {
       setValue( {
         ...value,
         error: 'Email and password are mandatory.'
       })
+      alert('Please enter a valid email or password');
       return;
     }
 
-    // Else, 
-    /* setValue( {
-      ...value,
-      error: ''
-    }) */
+    // Create a new user with the given email and password. Will alert if email
+    // already in use, invalid, etc.
     try {
       await createUserWithEmailAndPassword(auth, value.email, value.password);
-      alert("Registered!");
+      alert("Signed up successfully");
     } catch (error) {
       setValue( {
         ...value,
-        //error: error.message,
         error: error.message
       })
+      alert(error);
     }
   }
 
   return (
-    
-
     <div>
       <h1>Sign Up Screen!</h1>
       <br/>
@@ -66,7 +64,7 @@ export default function SignUpScreen() {
 
       <br/>
       <button 
-          onClick={signUp}
+          onClick={handleSignUp}
           className="px-4 py-2 text-white bg-indigo-400 rounded">
           Sign Up
       </button>

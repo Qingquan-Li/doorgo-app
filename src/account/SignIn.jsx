@@ -1,17 +1,19 @@
 import React from 'react';
 import { getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 
+// Return Auth instance associated with Firebase App
 const auth = getAuth();
 
-export default function SignInScreen(){
-
+// Export component with signIn functions and rendering.
+export default function SignIn(){
   const [value, setValue] = React.useState({
     email: '',
     password: '',
     error: ''
   })
 
-  async function signIn() {
+  // Function to handle signing in. 
+  async function handleSignIn() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
@@ -33,7 +35,7 @@ export default function SignInScreen(){
     }
   }
   
-  // Render
+  // Render input for signing in.
   return (
     <div>
       <h1>Sign In Screen!</h1>
@@ -59,12 +61,11 @@ export default function SignInScreen(){
 
         <br/>
         <button 
-          onClick={signIn}
+          onClick={handleSignIn}
           className="px-4 py-2 text-white bg-indigo-400 rounded"> 
         Sign In 
         </button>
         
-
     </div>
   );
 }

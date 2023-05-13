@@ -1,6 +1,37 @@
 # Integrating Firebase Authentication into DoorGo (notes by Marcos)
 
-The following are notes for implementing a `signIn` feature into doorgo. These changes focus on user authentication with Firebase. The majority of changes relate to 'account' screen/page.
+Changed the format of README for clarity.
+
+# User login state
+
+- When user is successfully logged in, you will get an alert and a message indicating you are signed in. The only option on the account page is to sign out.
+
+# Firebase config
+
+- Create a local `.env` file and store it in root of project, and add to `.gitignore` to avoid pushing the file accidently. I used `.env` file to store private Firebase configurations. For now, it works. Here is a template. Replace "templateValue" with your Firebase configuration values.
+
+# Windows environment
+
+- Inside `package.json` file, `"scripts"` needs a change to one of its key-value pairs to include `set` and `&&` operator. Inside `scripts`, in `"start"` to `"set HTTPS=true && set SSL_CRT_FILE=./ssl-certificates/localhost.pem && set SSL_KEY_FILE=./ssl-certificates/localhost-key.pem && react-scripts start",`
+
+```
+const firebaseConfig = {
+    apiKey: "your_apiKey_value",
+    authDomain: "your_authDomain_value",
+    projectId: "your_projectId_value",
+    storageBucket: "your_storageBucket_value",
+    messagingSenderId: "your_msgSenderId_value",
+    appId: "your_appId_value"
+  };
+```
+
+---
+
+# The **changelog**
+
+> The following are notes for implementing a `signIn` feature into Doorgo. These changes focus on user authentication with Firebase. The majority of changes relate to 'account' screen/page.
+
+## ( 10 May 2023 )
 
 ### Firebase config and `useAuthentication`
 
@@ -25,7 +56,9 @@ The following are notes for implementing a `signIn` feature into doorgo. These c
 
 ---
 
-# Sign-in feature is functional (notes, 5/12/2023)
+## ( 12 May 2023 )
+
+## Sign-in feature is functional
 
 After collaborating with Jake, I've made relevant changes to my code. Alson, I managed to implement Firebase into DoorGo. It is functional, with changes within the "account" folder.
 
@@ -60,3 +93,20 @@ After collaborating with Jake, I've made relevant changes to my code. Alson, I m
 Nothing major. Pushed to GitHub and Jake left some comments. Resolved said comments.
 
 - Made some changes in `package.json` since I work in a Windows environment. Change in 'scripts': (`"start": "set HTTPS=true && set SSL_CRT_FILE=./ssl-certificates/localhost.pem && set SSL_KEY_FILE=./ssl-certificates/localhost-key.pem && react-scripts start"`)
+
+## ( 13 May 2023 )
+
+## Sign-up feature
+
+- Added alerts to `signUp` component to notify new user of bad or used email/credentials.
+- Changed component names `signUpScreen` and `signInScreen` to `signUp` and `signIn`, respectively.
+- Created a local `.env` file, to store my Firebase configuration values. Added `.env` to `.gitignore` to avoid committing/pushing it.
+- Delete `react-native` from `package.json`'s dependencies, since we don't use React Native in this project. I may have installed React Native packages by accident.
+
+## ERROR:Dev Issues
+
+- Changed wording in files to keep terms in app consistent (i.e., "Signed up" instead of "Registered").
+- There seemed to be an issue with signing up new users but I could not recreate it. Will keep an eye out, though.
+- There was an issue with Cloudflare pages build. Could not recreate it either. Will keep looking.
+- Form validation. Luckily, Firebase provides messages for different types of errors, so I send these messages to user through `alerts`.
+- Needs a workaround to use `env` variables instead of hardcoding Firebase configuration values. Will put a place holder, tho.
