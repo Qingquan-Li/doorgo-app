@@ -1,12 +1,9 @@
-
 import React from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
+import { getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 
 const auth = getAuth();
 
 export default function SignInScreen(){
-
 
   const [value, setValue] = React.useState({
     email: '',
@@ -14,7 +11,6 @@ export default function SignInScreen(){
     error: ''
   })
 
-  // 
   async function signIn() {
     if (value.email === '' || value.password === '') {
       setValue({
@@ -27,6 +23,7 @@ export default function SignInScreen(){
 
     try {
       await signInWithEmailAndPassword(auth, value.email, value.password);
+      alert('Signed in successfully');
     } catch (error) {
       setValue({
         ...value,
@@ -40,30 +37,34 @@ export default function SignInScreen(){
   return (
     <div>
       <h1>Sign In Screen!</h1>
-      <div>
+      <br/>
+      <div className="bg-white flex items-center rounded-full shadow-xl">
         <input
           placeholder='Enter Email'
+          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
           value={value.email}
           onChange={e => setValue({ ...value, email: e.target.value })}
         />
-
-        <br/><br/>
-
+      </div>
+      <br/>
+      <div className="bg-white flex items-center rounded-full shadow-xl">
         <input
           placeholder='Enter Password'
+          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
           value={value.password}
           onChange={e => setValue({ ...value, password: e.target.value })}
           type="password"
-          
         />
-
-        <br/><br/>
-        <button onClick={signIn}> Sign In </button>
-
-        <br/><br/>
-        <button> Sign up</button>
-
       </div>
+
+        <br/>
+        <button 
+          onClick={signIn}
+          className="px-4 py-2 text-white bg-indigo-400 rounded"> 
+        Sign In 
+        </button>
+        
+
     </div>
   );
 }

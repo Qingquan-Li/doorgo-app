@@ -8,10 +8,8 @@ import BottomNavBar from "./common/BottomNavBar";
 import Home from "./home";
 import Navigation from './navigation';
 import Account from "./account";
-import { useAuthentication } from "./common/useAuthentication";
 
 function App() {
-  const {user} = useAuthentication();
 
   return (
     <Router>
@@ -20,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/navigation" element={<Navigation />} />
-            <Route path="/account" element={<Account/>}/>
+            <Route path="/account" element={<Account />} />
           </Routes>
         </div>
         <BottomNavBar />

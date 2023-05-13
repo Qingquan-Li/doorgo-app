@@ -1,10 +1,9 @@
 import React from 'react';
- 
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const auth = getAuth();
 
-export default function SignUpScreen(props) {
+export default function SignUpScreen() {
   // state to hold user email and password for signing up. Initally empty strings
   const [value, setValue] = React.useState({
     email: '',
@@ -29,7 +28,7 @@ export default function SignUpScreen(props) {
     }) */
     try {
       await createUserWithEmailAndPassword(auth, value.email, value.password);
-      props.SetSignUp(true);
+      alert("Registered!");
     } catch (error) {
       setValue( {
         ...value,
@@ -44,30 +43,34 @@ export default function SignUpScreen(props) {
 
     <div>
       <h1>Sign Up Screen!</h1>
-      <div>
+      <br/>
+      <div className="bg-white flex items-center rounded-full shadow-xl">
         <input
           placeholder='Enter Email'
+          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
           value={value.email}
           onChange={e => setValue({ ...value, email: e.target.value })}
         />
+      </div>
+      <br/>
 
-        <br/><br/>
-
+      <div className="bg-white flex items-center rounded-full shadow-xl">
         <input
           placeholder='Enter Password'
+          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
           value={value.password}
           onChange={e => setValue({ ...value, password: e.target.value })}
           type="password"
-          
         />
-
-        <br/><br/>
-        <button onClick={signUp}> Sign In </button>
-
-        <br/><br/>
-        <button> Sign up</button>
-
       </div>
+
+      <br/>
+      <button 
+          onClick={signUp}
+          className="px-4 py-2 text-white bg-indigo-400 rounded">
+          Sign Up
+      </button>
+
     </div>
   );
 }

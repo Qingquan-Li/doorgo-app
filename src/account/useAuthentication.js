@@ -1,18 +1,19 @@
-// Left as TypeScript. Can be refactored into JavaScript but this is fine for demo purposes.
-// Added for Firebase Authorization. Decided to leave config in for refactoring(Mark)
-
 import React from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, User} from "firebase/auth";
+import { getAuth, onAuthStateChanged} from "firebase/auth";
 
-// import Constants from 'expo-constants';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your app's Firebase configuration (HARDCODED. NEEDS Revision)
 const firebaseConfig = {
-  // PLACEHOLDER
-};
+    apiKey: "PLACEHOLDER",
+    authDomain: "PLACEHOLDER",
+    projectId: "PLACEHOLDER",
+    storageBucket: "PLACEHOLDER",
+    messagingSenderId: "PLACEHOLDER",
+    appId: "PLACEHOLDER"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
