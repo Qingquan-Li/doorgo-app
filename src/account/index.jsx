@@ -48,7 +48,7 @@ export default function Account() {
         <div className="text-4xl font-bold mb-4">
           <button
             onClick={handleRegisterClick}
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
+            className="w-full bg-blue-400 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
           >
             Sign Up
           </button>
@@ -57,7 +57,7 @@ export default function Account() {
         <div className="text-4xl font-bold mb-4">
           <button
             onClick={handleLoginClick}
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
+            className="w-full bg-blue-400 hover:bg-blue-700 text-white font-bold text-lg py-3 px-4 rounded"
           >
             Sign In
           </button>

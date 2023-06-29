@@ -37,35 +37,38 @@ export default function SignIn(){
   
   // Render input for signing in.
   return (
-    <div>
-      <h1>Sign In Screen!</h1>
-      <br/>
-      <div className="bg-white flex items-center rounded-full shadow-xl">
-        <input
-          placeholder='Enter Email'
-          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
-          value={value.email}
-          onChange={e => setValue({ ...value, email: e.target.value })}
-        />
-      </div>
-      <br/>
-      <div className="bg-white flex items-center rounded-full shadow-xl">
-        <input
-          placeholder='Enter Password'
-          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
-          value={value.password}
-          onChange={e => setValue({ ...value, password: e.target.value })}
-          type="password"
-        />
-      </div>
-
+    <div className="mt-10">
+      <h1>Sign In:</h1>
+      <form className="mt-3">
+        <div>
+          <input
+            placeholder='Email'
+            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={value.email}
+            onChange={e => setValue({ ...value, email: e.target.value })}
+          />
+        </div>
         <br/>
-        <button 
-          onClick={handleSignIn}
-          className="px-4 py-2 text-white bg-indigo-400 rounded"> 
-        Sign In 
-        </button>
-        
+        <div>
+          <input
+            placeholder='Password'
+            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={value.password}
+            onChange={e => setValue({ ...value, password: e.target.value })}
+            type="password"
+          />
+        </div>
+
+        <div className="flex flex-col items-center space-y-4 pt-8">
+          <button 
+            onClick={handleSignIn}
+            className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-5 rounded"
+          > 
+            Sign In 
+          </button>
+        </div>
+
+      </form>
     </div>
   );
 }
