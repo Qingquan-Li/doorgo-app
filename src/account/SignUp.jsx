@@ -39,35 +39,35 @@ export default function SignUp() {
   }
 
   return (
-    <div>
-      <h1>Sign Up Screen!</h1>
-      <br/>
-      <div className="bg-white flex items-center rounded-full shadow-xl">
+    <div className="mt-10">
+      <h1 className="mb-3">Sign Up:</h1>
+      <div>
         <input
-          placeholder='Enter Email'
-          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
+          placeholder='Email'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={value.email}
           onChange={e => setValue({ ...value, email: e.target.value })}
         />
       </div>
       <br/>
 
-      <div className="bg-white flex items-center rounded-full shadow-xl">
+      <div>
         <input
-          placeholder='Enter Password'
-          className="rounded-l-full w-full py-2 px-6 text-gray-700 text-lg leading-tight focus:outline-none"
+          placeholder='Password'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={value.password}
           onChange={e => setValue({ ...value, password: e.target.value })}
           type="password"
         />
       </div>
 
-      <br/>
-      <button 
-          onClick={handleSignUp}
-          className="px-4 py-2 text-white bg-indigo-400 rounded">
-          Sign Up
-      </button>
+      <div className="flex flex-col items-center space-y-4 pt-8">
+        <button 
+            onClick={handleSignUp}
+            className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 rounded">
+            Sign Up
+        </button>
+      </div>
 
     </div>
   );

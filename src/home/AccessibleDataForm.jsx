@@ -103,7 +103,7 @@ export default function AccessibleDataForm() {
 
       {/* Submit Button */}
       <div className="flex flex-col items-center space-y-4 pt-4">
-        <button className="px-4 py-2 text-white bg-indigo-400 rounded">
+        <button className="px-8 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded">
           Submit
         </button>
       </div>
