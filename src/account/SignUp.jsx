@@ -40,37 +40,35 @@ export default function SignUp() {
 
   return (
     <div className="mt-10">
-      <h1>Sign Up:</h1>
-      <form className="mt-3">
-        <div>
-          <input
-            placeholder='Email'
-            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={value.email}
-            onChange={e => setValue({ ...value, email: e.target.value })}
-          />
-        </div>
-        <br/>
+      <h1 className="mb-3">Sign Up:</h1>
+      <div>
+        <input
+          placeholder='Email'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value={value.email}
+          onChange={e => setValue({ ...value, email: e.target.value })}
+        />
+      </div>
+      <br/>
 
-        <div>
-          <input
-            placeholder='Password'
-            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={value.password}
-            onChange={e => setValue({ ...value, password: e.target.value })}
-            type="password"
-          />
-        </div>
+      <div>
+        <input
+          placeholder='Password'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value={value.password}
+          onChange={e => setValue({ ...value, password: e.target.value })}
+          type="password"
+        />
+      </div>
 
-        <div className="flex flex-col items-center space-y-4 pt-8">
-          <button 
-              onClick={handleSignUp}
-              className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 rounded">
-              Sign Up
-          </button>
-        </div>
+      <div className="flex flex-col items-center space-y-4 pt-8">
+        <button 
+            onClick={handleSignUp}
+            className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 rounded">
+            Sign Up
+        </button>
+      </div>
 
-      </form>
     </div>
   );
 }

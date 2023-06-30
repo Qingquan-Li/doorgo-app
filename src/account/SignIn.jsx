@@ -38,37 +38,35 @@ export default function SignIn(){
   // Render input for signing in.
   return (
     <div className="mt-10">
-      <h1>Sign In:</h1>
-      <form className="mt-3">
-        <div>
-          <input
-            placeholder='Email'
-            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={value.email}
-            onChange={e => setValue({ ...value, email: e.target.value })}
-          />
-        </div>
-        <br/>
-        <div>
-          <input
-            placeholder='Password'
-            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={value.password}
-            onChange={e => setValue({ ...value, password: e.target.value })}
-            type="password"
-          />
-        </div>
+      <h1 className="mb-3">Sign In:</h1>
+      <div>
+        <input
+          placeholder='Email'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value={value.email}
+          onChange={e => setValue({ ...value, email: e.target.value })}
+        />
+      </div>
+      <br/>
+      <div>
+        <input
+          placeholder='Password'
+          className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value={value.password}
+          onChange={e => setValue({ ...value, password: e.target.value })}
+          type="password"
+        />
+      </div>
 
-        <div className="flex flex-col items-center space-y-4 pt-8">
-          <button 
-            onClick={handleSignIn}
-            className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-5 rounded"
-          > 
-            Sign In 
-          </button>
-        </div>
+      <div className="flex flex-col items-center space-y-4 pt-8">
+        <button 
+          onClick={handleSignIn}
+          className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-5 rounded"
+        > 
+          Sign In 
+        </button>
+      </div>
 
-      </form>
     </div>
   );
 }
