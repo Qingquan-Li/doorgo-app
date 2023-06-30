@@ -1,8 +1,10 @@
 # Door Go App
 Door Go — A Crowdsourced App to Enhance Storefront Accessibility for Visually Impaired Individuals.
 
-Through Door Go, volunteers can capture photos of storefronts, identify and label their accessibility features such as door types, doorknobs, ramps and stairs, as well as record the precise location of the entrances.
-Our ultimate goal is to utilize this crowdsourced data (we also obtain data from Google Street View via https://doorfront.org) to build an open-source map of accessible storefronts, enabling people who are blind or have low vision to navigate the city with greater independence and confidence.
+* Designing a crowdsourced app to enhance storefront accessibility for visually impaired individuals, aiming to build an open-source, accessible map of storefronts, enabling people who are blind or have low vision to navigate the city with greater independence and confidence.
+* Through Door Go, volunteers can capture photos of storefronts, identify and label their accessibility features such as door types, doorknobs, ramps and stairs, as well as record the precise location of the entrances. This information is then available to visually impaired individuals - those who are blind or have low vision - allowing them to review the accessibility details of a store's door or a building's entrance, and navigate their way to an exact location.
+
+![Door Go App](https://github.com/Qingquan-Li/doorgo-app/assets/19491358/19904a86-be68-4449-aff9-0855f604a0c3)
 
 ## Run the App
 
