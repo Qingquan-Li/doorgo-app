@@ -36,7 +36,7 @@ export default function Account() {
   // and a signOut button. Else, will render big sign-in/sign-up buttons and
   // relevant signIn/signOut input fields.
   return (
-    <div className="min-h-scree mx-4 mt-48 items-center justify-center">
+    <div className="min-h-scree mx-4 mt-32 items-center justify-center">
 
       {/* NONAUTHENTICATED USER RENDERING
        * Rendered when we have a nonauthenticated user.
@@ -78,16 +78,16 @@ export default function Account() {
        * WIll render a greeting and a sign-out button.
       */}
       {user && (
-        <div className="text-4xl font-bold mb-4">
-          <h1>Welcome {user.email}</h1> <br/>
-          <h3>You are signed in.</h3>
+        <div>
+          <div>Welcome {user.email}</div>
+          <br/>
+          <div>You are signed in.</div>
           <br/>
           <button 
-          onClick={()=> {
-            signOut(auth);
-            alert("Signed out")}}
-          className="px-4 py-2 text-white bg-red-500 rounded">
-            Sign Out!
+            onClick={()=> {signOut(auth); alert("Signed out")}}
+            className="py-3 px-4 text-white bg-red-500 rounded"
+          >
+            Sign Out
           </button>
         </div>
       )}
