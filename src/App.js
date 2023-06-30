@@ -10,6 +10,7 @@ import Navigation from './navigation';
 import Account from "./account";
 
 function App() {
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
