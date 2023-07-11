@@ -14,28 +14,19 @@ public class DoorfrontController {
     @Autowired
     private DoorfrontRepository doorfrontRepository;
 
-    @Autowired
-    private DoorfrontDAO doorfrontDAO;
-
     @PostMapping("/doorfronts")
     public void addDoorfront(@RequestBody final List<Doorfront> doorfronts) {
-        // doorfrontRepository.saveAll(doorfronts);
-        // Replace DoorfrontRepository with DoorfrontDAO
-        doorfrontDAO.saveAll(doorfronts);
+         doorfrontRepository.saveAll(doorfronts);
     }
 
     @GetMapping("/doorfronts")
     public List<Doorfront> findDoorfronts() {
-        // return doorfrontRepository.findAll();
-        // Replace DoorfrontRepository with DoorfrontDAO
-        return doorfrontDAO.findAll();
+         return doorfrontRepository.findAll();
     }
 
     @GetMapping("doorfronts/{doorfrontId}")
     public Doorfront findDoorfront(@PathVariable final String doorfrontId) {
-        // return doorfrontRepository.findById(doorfrontId).orElseGet(Doorfront::new);
-        // Replace DoorfrontRepository with DoorfrontDAO
-        return doorfrontDAO.findById(doorfrontId);
+         return doorfrontRepository.findById(doorfrontId).orElseGet(Doorfront::new);
     }
 
     @PatchMapping("doorfronts/{doorfrontId}")
