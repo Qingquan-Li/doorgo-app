@@ -24,12 +24,12 @@ public class DoorfrontController {
          return doorfrontRepository.findAll();
     }
 
-    @GetMapping("doorfronts/{doorfrontId}")
+    @GetMapping("/doorfronts/{doorfrontId}")
     public Doorfront findDoorfront(@PathVariable final String doorfrontId) {
          return doorfrontRepository.findById(doorfrontId).orElseGet(Doorfront::new);
     }
 
-    @PatchMapping("doorfronts/{doorfrontId}")
+    @PatchMapping("/doorfronts/{doorfrontId}")
     public void partialUpdateDoorfront(@PathVariable final String doorfrontId,
                                        @RequestBody final Doorfront doorfront) throws Exception {
         for (final Field field : Doorfront.class.getDeclaredFields()) {
@@ -39,7 +39,16 @@ public class DoorfrontController {
                 continue;
             }
 
-            final Method getter = Doorfront.class.getDeclaredMethod("get" + StringUtils.capitalize(fieldName));
+            // final Method getter = Doorfront.class.getDeclaredMethod("get" + StringUtils.capitalize(fieldName));
+            final String getterName;
+            if (field.getType().equals(boolean.class)) {
+                // Examples: isHasStairs, isHasRamps getter methods
+                getterName = "is" + StringUtils.capitalize(fieldName);
+            } else {
+                getterName = "get" + StringUtils.capitalize(fieldName);
+            }
+            final Method getter = Doorfront.class.getDeclaredMethod(getterName);
+
             final Object fieldValue = getter.invoke(doorfront);
 
             if (Objects.nonNull(fieldValue)) {

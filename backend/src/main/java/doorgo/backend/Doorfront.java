@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Doorfront {
     @Id
     private String id;
-    @Field("photoUrl")
     private String photo;
     private String latitude;
     private String longitude;
