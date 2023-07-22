@@ -2,6 +2,8 @@
 .vscode/
 .idea
 
+/db/mongodb_uri.txt
+
 # ########################## Frontend - Start Here ###########################
 
 # dependencies

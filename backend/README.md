@@ -1,87 +1,75 @@
 # Door Go App - Backend
 
-## Build and Run the Backend Code
+## 1. Build and Run the Backend Code
 
-### Build a JAR File
+### Method 1: Build a JAR File (Use in Development)
 
-Install Maven on macOS:
+First, connect to MongoDB (Atlas) using environment variables:
+
+- Step 1: Reference an environment variable in `application.properties`
+  ```properties
+  spring.data.mongodb.uri=${MONGODB_URI}
+  spring.data.mongodb.database=<database-name>
+  ```
+- Step 2: Set up the `MONGODB_URI` environment variable
+
+  Add the export command to your (macOS/Linux) shell's profile script (~/.bash_profile, ~/.bashrc, or ~/.zshrc for Bash or Zsh):
+  ```
+  export MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-name>.<project-name>.mongodb.net/?retryWrites=true&w=majority"
+  ```
+  ```shell
+  $ source ~/.zshrc # Reload your shell's configuration with the source command
+  $ echo $MONGODB_URI # Verify. This should output your connection string to the terminal.
+  ```
+
+Then, build and run the JAR file:
 ```shell
-$ brew install maven
+$ brew install maven # Install Maven on macOS
+$ cd backend
+backend $ mvn package # Build a JAR file
+
+backend $ java -jar ./target/backend-0.0.1-SNAPSHOT.jar # Run the JAR file
 ```
 
-Build it:
+### Method 2: Build a Docker Image (Use in Development)
+
+Build it with Spring Boot Maven Plugin and run it:
 ```shell
 $ cd backend
-backend $ mvn package
+backend $ ./mvnw spring-boot:build-image # it will build a jar file into the target directory automatically
+
+$ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
-Run it:
+Or build it with Dockerfile and run it (faster build):
 ```shell
 $ cd backend
-backend $ java -jar ./target/backend-0.0.1-SNAPSHOT.jar
+backend $ mvn package # Build a JAR file if not built yet
+backend $ docker build -t doorgo-backend:0.0.1-SNAPSHOT . # Build a Docker image. Name: doorgo-backend, Tag: 0.0.1-SNAPSHOT
+
+$ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 doorgo-backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
-### Build a Container (Docker) Image
 
-Build it:
+### Method 3: Build a Docker Image with Dockerfile and docker-compose.yml (Use in Production)
+
+Build and run it with Dockerfile and docker-compose.yml:  
+First, create a `db/mongodb_uri.txt` (do not commit it with Git) in the project's root directory and put your MongoDB Atlas URI in it, then:
 ```shell
 $ cd backend
-backend $ ./mvnw spring-boot:build-image
+backend $ mvn package # Build a JAR file if not built yet
+$ cd ..
+$ docker compose up -d --build # Build and run the container in the background
 ```
 
-List the available images:
+Down it:
 ```shell
-$ docker images
+$ docker compose down # Stop and remove containers, networks, images, and volumes
 ```
 
-Run it:
-```shell
-$ docker run -p8080:8080 backend:0.0.1-SNAPSHOT
-```
+---
 
-Run it with connecting to MongoDB Atlas:
-```shell
-$ docker run -e MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-name>.<project-name>.mongodb.net/?retryWrites=true&w=majority" -p 8080:8080 backend:0.0.1-SNAPSHOT
-```
-
-## Connect to MongoDB
-
-### Method 1
-In `application.properties`:
-```properties
-spring.data.mongodb.uri=mongodb+srv://<username>:<password>@<cluster-name>.<project-name>.mongodb.net/?retryWrites=true&w=majority
-spring.data.mongodb.database=<database-name>
-```
-
-### Method 2 - Using environment variables
-
-#### Step 1: Reference an environment variable in `application.properties`
-
-```properties
-spring.data.mongodb.uri=${MONGODB_URI}
-spring.data.mongodb.database=<database-name>
-```
-
-#### Step 2: Set up the `MONGODB_URI` environment variable
-
-Add the export command to your (macOS/Linux) shell's profile script
-(~/.bash_profile, ~/.bashrc, or ~/.zshrc for Bash or Zsh):
-```
-export MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-name>.<project-name>.mongodb.net/?retryWrites=true&w=majority"
-```
-
-Reload your shell's configuration with the source command. For example:
-```shell
-source ~/.zshrc
-```
-
-Verify. This should output your connection string to the terminal:
-```shell
-echo $MONGODB_URI
-```
-
-
-## Maven Configuration (for IntelliJ IDEA)
+## 2. Maven Configuration (for IntelliJ IDEA)
 
 Since the `pom.xml file` is inside the backend directory, you'll have to
 import that specific folder as a Maven project in IntelliJ IDEA:
