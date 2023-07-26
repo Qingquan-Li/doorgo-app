@@ -50,6 +50,21 @@ backend $ docker build -t doorgo-backend:0.0.1-SNAPSHOT . # Build a Docker image
 $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 doorgo-backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
+#### Build a linux/amd64 image on macOS with Apple Silicon (linux/arm64):
+1. Enable Docker's experimental features.  
+Put this statement into your shell's profile file (like ~/.bashrc, ~/.zshrc, etc.):
+```
+export DOCKER_CLI_EXPERIMENTAL=enabled
+```
+2. Create a new builder instance that supports multiple platforms:
+```shell
+$ docker buildx create --name mybuilder --use
+```
+3. Build and upload the image to Docker Hub.
+```shell
+$ cd backend
+backend $ docker buildx build --platform linux/amd64 -t username/doorgo-backend . --push
+```
 
 ### Method 3: Build a Docker Image with Dockerfile and docker-compose.yml (Use in Production)
 
