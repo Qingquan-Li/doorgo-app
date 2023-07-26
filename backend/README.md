@@ -37,16 +37,13 @@ Build it with Spring Boot Maven Plugin and run it:
 ```shell
 $ cd backend
 backend $ ./mvnw spring-boot:build-image # it will build a jar file into the target directory automatically
-
 $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
 Or build it with Dockerfile and run it (faster build):
 ```shell
 $ cd backend
-backend $ mvn package # Build a JAR file if not built yet
 backend $ docker build -t doorgo-backend:0.0.1-SNAPSHOT . # Build a Docker image. Name: doorgo-backend, Tag: 0.0.1-SNAPSHOT
-
 $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 doorgo-backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
@@ -56,9 +53,6 @@ $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 doorgo-backend
 Build and run it with Dockerfile and docker-compose.yml:  
 First, create a `db/mongodb_uri.txt` (do not commit it with Git) in the project's root directory and put your MongoDB Atlas URI in it, then:
 ```shell
-$ cd backend
-backend $ mvn package # Build a JAR file if not built yet
-$ cd ..
 $ docker compose up -d --build # Build and run the container in the background
 ```
 
