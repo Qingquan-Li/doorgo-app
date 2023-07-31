@@ -25,5 +25,6 @@ Door Go — A Crowdsourced App to Enhance Storefront Accessibility for Visually 
   - MongoDB
   - Firebase (for image storage and authentication)
 - Deployment:
-    - Docker on a Linux Server
-    - Cloudflare Pages (for frontend page testing and preview)
+    - TODO: Docker on a Linux Server (for production)
+    - Docker on Google Cloud Run (for testing and development)
+    - Cloudflare Pages (for frontend)

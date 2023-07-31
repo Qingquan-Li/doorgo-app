@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
+@RequestMapping("/api")
 public class DoorfrontController {
     @Autowired
     private DoorfrontRepository doorfrontRepository;

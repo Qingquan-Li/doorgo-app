@@ -2,7 +2,7 @@
 
 ## 1. Build and Run the Backend Code
 
-### Method 1: Build a JAR File (Use in Development)
+### Method 1: Build a JAR File (Run Locally)
 
 First, connect to MongoDB (Atlas) using environment variables:
 
@@ -31,9 +31,9 @@ backend $ mvn package # Build a JAR file
 backend $ java -jar ./target/backend-0.0.1-SNAPSHOT.jar # Run the JAR file
 ```
 
-### Method 2: Build a Docker Image (Use in Development)
+### Method 2: Build a Docker Image (Deploy on Google Cloud Run)
 
-Build it with Spring Boot Maven Plugin and run it:
+#### Build an image with Spring Boot Maven Plugin and run it:
 ```shell
 $ cd backend
 backend $ ./mvnw spring-boot:build-image # it will build a jar file into the target directory automatically
@@ -41,32 +41,33 @@ backend $ ./mvnw spring-boot:build-image # it will build a jar file into the tar
 $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
-Or build it with Dockerfile and run it (faster build):
+#### Or build an image with Dockerfile and run it (faster build):
 ```shell
 $ cd backend
 backend $ mvn package # Build a JAR file if not built yet
-backend $ docker build -t doorgo-backend:0.0.1-SNAPSHOT . # Build a Docker image. Name: doorgo-backend, Tag: 0.0.1-SNAPSHOT
+backend $ docker build -t doorgo-backend:latest . # Build a Docker image. Name: doorgo-backend, Tag: 0.0.1-SNAPSHOT
 
 $ docker run -e MONGODB_URI="your-mongodb-atlas-uri" -p 8080:8080 doorgo-backend:0.0.1-SNAPSHOT # Run the container with connecting to MongoDB Atlas
 ```
 
-#### Build a linux/amd64 image on macOS with Apple Silicon (linux/arm64):
-1. Enable Docker's experimental features.  
-Put this statement into your shell's profile file (like ~/.bashrc, ~/.zshrc, etc.):
-```
-export DOCKER_CLI_EXPERIMENTAL=enabled
-```
-2. Create a new builder instance that supports multiple platforms:
+#### Push the image to Docker Hub:
 ```shell
-$ docker buildx create --name mybuilder --use
+$ docker login # Login to Docker Hub
+$ cd backend
+backend $ docker tag doorgo-backend:latest username/doorgo-backend:latest # Tag the image
+backend $ docker push username/doorgo-backend:latest # Push the image to Docker Hub
 ```
-3. Build and upload the image to Docker Hub.
+
+#### Build a linux/amd64 image on macOS with Apple Silicon (linux/arm64):
+
 ```shell
 $ cd backend
+backend $ mvn package # Build a JAR file if not built yet
+backend $ # Build and upload the image to Docker Hub.
 backend $ docker buildx build --platform linux/amd64 -t username/doorgo-backend . --push
 ```
 
-### Method 3: Build a Docker Image with Dockerfile and docker-compose.yml (Use in Production)
+### Method 3: Build a Docker Image with Dockerfile and docker-compose.yml (Deploy on a single Linux server)
 
 Build and run it with Dockerfile and docker-compose.yml:  
 First, create a `db/mongodb_uri.txt` (do not commit it with Git) in the project's root directory and put your MongoDB Atlas URI in it, then:
