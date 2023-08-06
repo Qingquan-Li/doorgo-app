@@ -9,6 +9,7 @@ public class Doorfront {
     @Id
     private String id;
     private String photo;
+    private String nameOfStoreOrBuilding;
     private String latitude;
     private String longitude;
     private String doorType;
@@ -31,6 +32,14 @@ public class Doorfront {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getNameOfStoreOrBuilding() {
+        return nameOfStoreOrBuilding;
+    }
+
+    public void setNameOfStoreOrBuilding(String nameOfStoreOrBuilding) {
+        this.nameOfStoreOrBuilding = nameOfStoreOrBuilding;
     }
 
     public String getLatitude() {
