@@ -16,8 +16,8 @@ public class DoorfrontController {
     private DoorfrontRepository doorfrontRepository;
 
     @PostMapping("/doorfronts")
-    public void addDoorfront(@RequestBody final List<Doorfront> doorfronts) {
-         doorfrontRepository.saveAll(doorfronts);
+    public Doorfront addDoorfront(@RequestBody final Doorfront doorfront) {
+         return doorfrontRepository.save(doorfront);
     }
 
     @GetMapping("/doorfronts")
