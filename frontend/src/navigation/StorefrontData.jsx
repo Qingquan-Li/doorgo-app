@@ -1,4 +1,4 @@
-export default function AccessibleData() {
+export default function StorefrontData() {
   const location = 'Fiterman Hall (245 Greenwich St)';
   const doorType = 'Double';
   const doorKnob = 'Vertical Bar';

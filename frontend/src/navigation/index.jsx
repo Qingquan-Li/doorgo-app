@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Search from "./Search";
 import FitermanHallImage from "./FitermanHallImage";
-import AccessibleData from "./AccessibleData";
+import StorefrontData from "./StorefrontData";
 import NavigateToThere from "./NavigateToThere";
 
 export default function Navigation() {
@@ -17,7 +17,7 @@ export default function Navigation() {
     <>
       <Search onSearchClick={handleSearchClick}/>
       {showComponents && <FitermanHallImage />}
-      {showComponents && <AccessibleData />}
+      {showComponents && <StorefrontData />}
       {showComponents && <NavigateToThere />}
     </>
   );

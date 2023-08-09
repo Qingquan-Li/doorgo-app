@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faMapMarkedAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
-const BottomNavBar = () => {
+export default function BottomNavBar() {
   return (
     <div className="fixed bottom-0 inset-x-0 pb-4 bg-white border-t shadow-md">
       <nav className="flex items-center justify-around py-2">
@@ -31,5 +31,3 @@ const BottomNavBar = () => {
     </div>
   );
 };
-
-export default BottomNavBar;

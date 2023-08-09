@@ -1,11 +1,15 @@
 import Camera from "./Camera";
-import AccessibleDataForm from "./AccessibleDataForm";
+import StorefrontDataForm from "./StorefrontDataForm";
+// import DemoApiGetRequest from "./DemoApiGetRequest";
+// import DemoApiPostRequest from "./DemoApiPostRequest";
 
 export default function Home() {
   return (
     <>
       <Camera />
-      <AccessibleDataForm />
+      <StorefrontDataForm />
+      {/*<DemoApiGetRequest />*/}
+      {/*<DemoApiPostRequest />*/}
     </>
   );
 }

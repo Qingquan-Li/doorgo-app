@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Map from "./Map";
 
 export default function Location() {
   const [position, setPosition] = useState(null);
@@ -9,10 +10,11 @@ export default function Location() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setPosition({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          });
+          const newPosition = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          setPosition(newPosition);
         },
         (error) => {
           console.error(error);
@@ -22,20 +24,19 @@ export default function Location() {
         // position, it will do so. Note that this can result in slower
         // response times or increased power consumption (with a GPS chip
         // on a mobile device for example).
-        { enableHighAccuracy: true }
+        {enableHighAccuracy: true}
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
   };
 
-  // Opens Google Maps with the specified latitude and longitude
-  // const navigateToLocation = () => {
-  //   if (position) {
-  //     const url = `https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}`;
-  //     window.open(url, "_blank");
-  //   }
-  // };
+  const handleMapClick = (event) => {
+    setPosition({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng()
+    });
+  };
 
   return (
     <div className="space-y-4">
@@ -45,16 +46,13 @@ export default function Location() {
       >
         Get Location (Latitude & Longitude)
       </button>
+
+      <Map location={position} onMapClick={handleMapClick}/>
+
       {position && (
         <div className="space-y-4">
-          Latitude: {position.latitude}<br />
-          Longitude: {position.longitude}<br />
-          {/* <button
-            className="px-4 py-2 text-white bg-indigo-400 rounded"
-            onClick={navigateToLocation}
-          >
-            Navigate To The Location
-          </button> */}
+          Latitude: {position.lat}<br/>
+          Longitude: {position.lng}<br/>
         </div>
       )}
     </div>
