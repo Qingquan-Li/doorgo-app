@@ -26,7 +26,10 @@ public class BackendApplication {
 						"https://localhost:3000",
 						"https://192.168.0.101:3000",
 						"https://doorgo.pages.dev",
-						"https://*.doorgo.pages.dev",
+						// Spring Boot doesn't inherently support wildcard subdomains in allowedOrigins
+						// "https://*.doorgo.pages.dev",
+						"https://create-sharing-link.doorgo.pages.dev/",
+						"https://dev.doorgo.pages.dev/",
 				};
 				registry.addMapping("/api/**")
 						.allowedOrigins(allowedOrigins);
