@@ -15,9 +15,9 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        {/* `pb-20` is used to add padding (space) at the bottom of the container
+        {/* `pb-32` is used to add padding (space) at the bottom of the container
         and prevent the `BottomNavBar` from obscuring the content. */}
-        <div className="flex-grow pb-20">
+        <div className="flex-grow pb-32">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/storefronts/:id" element={<Storefront />} />

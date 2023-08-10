@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RootAPIURL } from '../common/RootAPIURL'
+import StorefrontPhoto from './StorefrontPhoto';
 import ShareButton from "./ShareButton";
 import NavigateToThereButton from "./NavigateToThereButton";
 
@@ -62,6 +63,8 @@ export default function StorefrontData() {
 
   return (
     <div className="p-4">
+      <StorefrontPhoto photo={ storefrontData.photo } />
+
       <div className="pb-4">
         <strong>Name:</strong> {storefrontData.nameOfStoreOrBuilding}
       </div>

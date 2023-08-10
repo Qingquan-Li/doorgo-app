@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { storage} from "../common/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { RootAPIURL } from '../common/RootAPIURL'
+import Camera from "./Camera";
 import Location from './Location';
 
 export default function StorefrontDataForm() {
@@ -13,6 +16,7 @@ export default function StorefrontDataForm() {
     hasRamps: false,
     notes: '',
   });
+  const [photoData, setPhotoData] = useState(null);
   const [location, setLocation] = useState(null);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +40,11 @@ export default function StorefrontDataForm() {
     }));
   };
 
+  // Handle photo capture
+  const handlePhotoCapture = (photoBlob) => {
+    setPhotoData(photoBlob);
+  }
+
   // Handle form submission
   const handleSubmit = async (event) => {
     // Prevent the default form submit behavior
@@ -44,6 +53,22 @@ export default function StorefrontDataForm() {
     // Show the spinner (Tailwind CSS Animation) while the form is submitting
     setIsLoading(true);
 
+    let photoURL = '';
+    if (photoData) {
+      // Upload the photo to Firebase Storage and get the download URL
+      // const storageRef = ref(storage, `storefront-photos/${Date.now()}`);
+      const storageRef = ref(storage, 'storefront-photos/' + new Date().toISOString() + '.png');
+      const uploadTask = uploadBytesResumable(storageRef, photoData);
+
+      try {
+        await uploadTask;
+        photoURL = await getDownloadURL(storageRef);
+      } catch (error) {
+        console.error('Failed to upload photo to Firebase:', error);
+        alert(`Failed to upload photo: ${error.message}`)
+      }
+    }
+
     // Construct the complete form data
     // Include location data in the request body (only if location is defined)
     const completeFormData = {
@@ -51,6 +76,8 @@ export default function StorefrontDataForm() {
       // with potentially new latitude and longitude values if location is defined.
       // Spread the form data object into individual properties (key-value pairs):
       ...formData,
+      // add the photo URL to the form data
+      photo: photoURL,
       // Try to access the `lat` and `lng` properties of the `location` object.
       // But if `location` happens to be null or undefined, trying to access
       // `location.lat` directly would throw an error. The `?.` prevents this
@@ -98,6 +125,9 @@ export default function StorefrontDataForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 px-4 pt-4">
+
+      <Camera onCapture={ handlePhotoCapture } />
+
       {/* nameOfStoreOrBuilding */}
       <div>
         <label htmlFor="nameOfStoreOrBuilding"
