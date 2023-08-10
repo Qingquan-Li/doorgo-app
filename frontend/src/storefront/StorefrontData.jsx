@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RootAPIURL } from '../common/RootAPIURL'
 import ShareButton from "./ShareButton";
+import NavigateToThereButton from "./NavigateToThereButton";
 
 export default function StorefrontData() {
   const [storefrontData, setStorefrontData] = useState(null);
@@ -89,7 +90,9 @@ export default function StorefrontData() {
         >
           Read Storefront Data
         </button>
+
         <ShareButton title={storefrontData.nameOfStoreOrBuilding} />
+        <NavigateToThereButton latitude={storefrontData.latitude} longitude={storefrontData.longitude} />
       </div>
     </div>
   );

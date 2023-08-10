@@ -13,9 +13,10 @@ export default function StorefrontDataForm() {
     hasRamps: false,
     notes: '',
   });
+  const [location, setLocation] = useState(null);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // Get the navigate object (function) from the useNavigate hook
+  // Get the navigate function from the useNavigate hook
   // so that we can navigate the user to a new page later
   const navigate = useNavigate();
 
@@ -43,6 +44,23 @@ export default function StorefrontDataForm() {
     // Show the spinner (Tailwind CSS Animation) while the form is submitting
     setIsLoading(true);
 
+    // Construct the complete form data
+    // Include location data in the request body (only if location is defined)
+    const completeFormData = {
+      // Construct a new object that combines all the properties of formData
+      // with potentially new latitude and longitude values if location is defined.
+      // Spread the form data object into individual properties (key-value pairs):
+      ...formData,
+      // Try to access the `lat` and `lng` properties of the `location` object.
+      // But if `location` happens to be null or undefined, trying to access
+      // `location.lat` directly would throw an error. The `?.` prevents this
+      // error by returning undefined if `location` is null or undefined.
+      // If `location` is defined, then `location?.lat` is equivalent to `location.lat`.
+      // If `location` is null or undefined, then `location?.lat` is equivalent to `undefined`.
+      latitude: location?.lat,
+      longitude: location?.lng
+    }
+
     // Set up the options for the fetch request
     const requestOptions = {
       method: 'POST',
@@ -50,7 +68,8 @@ export default function StorefrontDataForm() {
         'Content-Type': 'application/json'
       },
       // The body of the request, with the form data in JSON format
-      body: JSON.stringify(formData),
+      // body: JSON.stringify(formData),
+      body: JSON.stringify(completeFormData),
     };
     try {
       // Make the request
@@ -185,7 +204,8 @@ export default function StorefrontDataForm() {
         />
       </div>
 
-      <Location/>
+      {/* Use the onLocationChange prop of the Location component to update the location state */}
+      <Location onLocationChange={(newLocation) => setLocation(newLocation)} />
 
       {/* Submit Button */}
       <div className="flex flex-col items-center space-y-4 pt-4">

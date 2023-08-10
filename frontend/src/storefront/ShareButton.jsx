@@ -18,7 +18,7 @@ export default function ShareButton({ title }) {
       navigator.clipboard.writeText(currentUrl).then(() => {
         alert('URL copied to clipboard!');
       }).catch(err => {
-        alert('Failed to copy URL: ', err);
+        alert(`Failed to copy URL: ${err}`);
       });
     }
   };
