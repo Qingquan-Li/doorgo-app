@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: backend
+    restart: always
+    ports:
+      - "8080:8080"
+    secrets:
+      - mongodb_uri
+#    environment:
+#      - MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-name>.<project-name>.mongodb.net/?retryWrites=true&w=majority
+    # The ENTRYPOINT defined in the docker-compose.yml will take precedence over the one defined in the Dockerfile
+    entrypoint: ["/bin/sh", "-c", "export MONGODB_URI=$(cat /run/secrets/mongodb_uri) && java -jar /app.jar"]
+
+secrets:
+  mongodb_uri:
+    file: db/mongodb_uri.txt
