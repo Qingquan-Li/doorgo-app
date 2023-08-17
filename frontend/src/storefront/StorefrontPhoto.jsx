@@ -4,7 +4,7 @@ export default function StorefrontPhoto({ photo }) {
       <div className="h-0 pb-[56.25%]">
         <img
           src={photo}
-          alt="Storefront Photo"
+          alt="Storefront"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
       </div>
