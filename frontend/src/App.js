@@ -4,6 +4,7 @@ import {
   Routes,
 }from "react-router-dom";
 
+import WarmUpGoogleCloudRun from "./common/WarmUpGoogleCloudRun";
 import BottomNavBar from "./common/BottomNavBar";
 import Home from "./home";
 import Storefront from "./storefront";
@@ -14,6 +15,10 @@ function App() {
 
   return (
     <Router>
+      {/* This component is used to warm up the Google Cloud Run instance.
+      It is used to prevent the cold start problem. */}
+      <WarmUpGoogleCloudRun />
+
       <div className="flex flex-col min-h-screen">
         {/* `pb-32` is used to add padding (space) at the bottom of the container
         and prevent the `BottomNavBar` from obscuring the content. */}
